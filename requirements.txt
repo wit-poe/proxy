@@ -1,0 +1,8 @@
+#requirements.txt
+
+transformers
+Pillow
+accelerate
+
+sentencepiece
+tiktoken 

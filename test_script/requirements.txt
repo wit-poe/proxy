@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+transformers
+accelerate
+pillow
+qwen_vl_utils
+python-multipart
+# If you are using flash attention (optional but recommended for speed)
+# flash-attn --no-build-isolation 

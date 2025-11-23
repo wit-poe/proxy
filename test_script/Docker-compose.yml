@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  qwen_model:
+    build: .
+    container_name: qwen_api_server
+    ports:
+      - "8000:8000" # Maps container port 8000 to localhost:8000
+    
+    environment:
+      # Tells the Python script where to find the model inside the container
+      # If you haven't downloaded it, remove this and set MODEL_ID to the huggingface ID in main.py
+      - MODEL_PATH=/app/models/Qwen 
+    
+    volumes:
+      # --- CRITICAL: MAP YOUR LOCAL MODEL FOLDER HERE ---
+      # Replace the LEFT side with the actual path on your Mac/PC
+      # Example: /Users/yogesh/models/Qwen:/app/models/Qwen
+      - ./local_model_folder:/app/models/Qwen
+      
+      # Optional: Cache for HuggingFace if you are downloading inside
+      - ~/.cache/huggingface:/root/.cache/huggingface
+
+    # Resource limits (Optional, good for production)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
